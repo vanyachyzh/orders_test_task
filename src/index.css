@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @apply scroll-smooth text-[12px] md:text-[14px] lg:text-[16px];
+}
+
+.hiddenScrollBar {
+  -ms-overflow-style: none;
+  /* scrollbar-width: none; */
+  scroll-behavior: smooth;
+}
+
+.hiddenScrollBar::-webkit-scrollbar {
+  display: none;
+}
+
+.section {
+  @apply w-full px-[3rem] md:px-[6rem] lg:m-auto lg:w-[80rem] lg:max-w-[90vw] lg:px-0;
+}
