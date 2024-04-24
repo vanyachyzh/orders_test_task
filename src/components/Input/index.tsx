@@ -58,7 +58,7 @@ const Input = ({
 
       <span
         className={twMerge(
-          'font-Mulish block h-0 w-full overflow-hidden pt-0 text-[0.75rem] leading-[1.125rem] text-[#FF7B7B] transition-all duration-300',
+          'block h-0 w-full text-center overflow-hidden pt-0 text-[0.75rem] leading-[1.125rem] text-[#FF7B7B] transition-all duration-300',
           error && 'h-[2.125rem] pt-[1rem]',
         )}
       >
