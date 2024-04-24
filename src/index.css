@@ -25,3 +25,29 @@ body {
 .section {
   @apply w-full px-[3rem] md:px-[6rem] lg:m-auto lg:w-[80rem] lg:max-w-[90vw] lg:px-0;
 }
+
+.loader {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0.9rem 0 #fff, -0.9rem 0 #fff;
+  position: relative;
+  animation: flash 0.5s ease-out infinite alternate;
+}
+
+@keyframes flash {
+  0% {
+    background-color: #FFF2;
+    box-shadow: 0.9rem 0 #FFF2, -0.9rem 0 #FFF;
+  }
+  50% {
+    background-color: #FFF;
+    box-shadow: 0.9rem 0 #FFF2, -0.9rem 0 #FFF2;
+  }
+  100% {
+    background-color: #FFF2;
+    box-shadow: 0.9rem 0 #FFF, -0.9rem 0 #FFF2;
+  }
+}
+      

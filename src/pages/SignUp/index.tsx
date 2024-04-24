@@ -1,5 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
@@ -13,6 +14,8 @@ import { validationScheme } from './scheme';
 import { ISignUpForm } from './types';
 
 const SignUp = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   const {
     handleSubmit,
     register,
@@ -22,6 +25,8 @@ const SignUp = () => {
   });
 
   const onSubmit = async (data: ISignUpForm) => {
+    setIsLoading(true);
+
     try {
       await createUserWithEmailAndPassword(auth, data.email, data.password);
 
@@ -29,14 +34,16 @@ const SignUp = () => {
     } catch (error) {
       handleError(error);
     }
+
+    setIsLoading(false);
   };
 
   return (
-    <div className="flex flex-col items-center gap-[3rem] w-[20rem]">
-      <h3 className='font-bold text-[3rem]'>Sign Up</h3>
+    <div className="flex w-[20rem] flex-col items-center gap-[3rem]">
+      <h3 className="text-[3rem] font-bold">Sign Up</h3>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col items-center gap-[1rem] w-full"
+        className="flex w-full flex-col items-center gap-[1rem]"
       >
         <Input
           id="email"
@@ -66,7 +73,9 @@ const SignUp = () => {
           error={errors.confirmPassword?.message}
         />
 
-        <Button>Sign Up</Button>
+        <Button className="min-w-[10rem]" isLoading={isLoading}>
+          Sign Up
+        </Button>
       </form>
     </div>
   );

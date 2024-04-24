@@ -1,12 +1,17 @@
+import { twMerge } from 'tailwind-merge';
+
 import { ButtonProps } from './types';
 
-const Button = ({ ...props }: ButtonProps) => {
+const Button = ({ isLoading, className, ...props }: ButtonProps) => {
   return (
     <button
       {...props}
-      className="inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+      className={twMerge(
+        'flex min-h-[2.9rem] items-center justify-center rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500',
+        className,
+      )}
     >
-      {props.children}
+      {!isLoading ? props.children : <span className="loader" />}
     </button>
   );
 };
