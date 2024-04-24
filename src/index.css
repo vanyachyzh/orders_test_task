@@ -8,6 +8,10 @@ html {
   @apply scroll-smooth text-[12px] md:text-[14px] lg:text-[16px];
 }
 
+body {
+  background: #bfdbfe;
+}
+
 .hiddenScrollBar {
   -ms-overflow-style: none;
   /* scrollbar-width: none; */

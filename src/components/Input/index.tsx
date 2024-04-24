@@ -15,7 +15,7 @@ const Input = ({
   const [isPassword, setIsPassword] = useState(props.type === 'password');
 
   return (
-    <div>
+    <div className='w-full'>
       <label htmlFor={props.id} className="sr-only">
         {label}
       </label>
@@ -27,13 +27,13 @@ const Input = ({
           aria-autocomplete="none"
           autoComplete="new-password"
           type={isPassword ? 'password' : 'text'}
-          className="w-full rounded-md border-gray-200 px-[0.5rem] py-[0.5rem] shadow-sm outline-blue-500 sm:text-sm"
+          className="w-full rounded-md border-gray-200 px-[0.8rem] py-[1rem] shadow-sm outline-blue-500 sm:text-sm"
         />
 
         {Icon && !isPassword && (
           <span
             className={twMerge(
-              'pointer-events-none absolute inset-y-0 end-0 grid w-10 cursor-pointer select-none place-content-center text-gray-500 [&>svg]:h-[1rem] [&>svg]:w-[1rem]',
+              'pointer-events-none absolute inset-y-0 end-0 grid w-12 cursor-pointer select-none place-content-center text-gray-500 [&>svg]:h-[1rem] [&>svg]:w-[1rem]',
               error && 'text-[#FF7B7B]',
             )}
           >
@@ -46,7 +46,7 @@ const Input = ({
             type="button"
             onClick={() => setIsPassword(prev => !prev)}
             className={twMerge(
-              'absolute inset-y-0 end-0 grid w-10 cursor-pointer select-none place-content-center text-gray-500 [&>svg]:h-[1rem] [&>svg]:w-[1rem]',
+              'absolute inset-y-0 end-0 grid w-12 cursor-pointer select-none place-content-center text-gray-500 [&>svg]:h-[1rem] [&>svg]:w-[1rem]',
               error && 'text-[#FF7B7B]',
               isPassword && 'cursor-pointer',
             )}
