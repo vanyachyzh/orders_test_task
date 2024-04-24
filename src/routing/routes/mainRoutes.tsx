@@ -1,5 +1,4 @@
-import { Outlet } from 'react-router-dom';
-
+import Layout from '../../layouts';
 import Orders from '../../pages/Orders';
 import AuthGuard from '../guards/AuthGuard';
 
@@ -10,7 +9,7 @@ const MAIN_ROUTES = {
       path: '/',
       element: (
         <AuthGuard>
-          <Outlet />
+          <Layout />
         </AuthGuard>
       ),
       children: [
