@@ -1,5 +1,7 @@
 const Orders = () => {
-  return <div>Orders</div>;
+  return <section className="text-[2rem] font-semibold">This is the order page
+  
+  </section>;
 };
 
 export default Orders;
