@@ -14,7 +14,7 @@ import { validationScheme } from './scheme';
 import { ISignUpForm } from './types';
 
 const SignUp = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     handleSubmit,
