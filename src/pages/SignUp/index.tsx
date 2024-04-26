@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import Button from '../../components/Button';
@@ -14,10 +15,9 @@ import { handleError } from '../../utils/handleError';
 import { validationScheme } from './scheme';
 
 import { ISignUpForm } from './types';
-import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -43,7 +43,7 @@ const SignUp = () => {
         if (user) {
           const idToken = await user.getIdToken();
           setCookie(COOKIE_TOKEN_NAME, idToken);
-          navigate('/orders')
+          navigate('/orders');
         }
       } catch (error) {
         handleError(error, 'User not available');
@@ -97,6 +97,13 @@ const SignUp = () => {
         <Button className="min-w-[10rem]" isLoading={isLoading}>
           Sign Up
         </Button>
+
+        <span>
+          Do you have an account?{' '}
+          <Link to="/login" className="font-bold underline hover:no-underline">
+            Log In
+          </Link>
+        </span>
       </form>
     </div>
   );
