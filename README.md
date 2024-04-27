@@ -38,7 +38,7 @@ FIREBASE_MEASUREMENT_ID=G-523JB878JN
 npm run dev
 ```
 
-#### 5. Open 5173 in browser
+#### 5. Open 5173 port in browser
 
 ## Key Features
 
