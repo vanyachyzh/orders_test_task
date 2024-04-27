@@ -61,7 +61,6 @@ const SignUp = () => {
 
   return (
     <div className="flex w-[20rem] flex-col items-center gap-[3rem]">
-      <h3 className="text-[3rem] font-bold">Sign Up</h3>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex w-full flex-col items-center gap-[1rem]"

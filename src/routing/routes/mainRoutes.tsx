@@ -1,4 +1,4 @@
-import Layout from '../../layouts';
+import MainLayout from '../../layouts/MainLayout';
 import Orders from '../../pages/Orders';
 import AuthGuard from '../guards/AuthGuard';
 
@@ -9,7 +9,7 @@ const MAIN_ROUTES = {
       path: '/',
       element: (
         <AuthGuard>
-          <Layout />
+          <MainLayout />
         </AuthGuard>
       ),
       children: [

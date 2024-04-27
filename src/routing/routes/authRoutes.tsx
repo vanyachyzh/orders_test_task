@@ -1,4 +1,4 @@
-import Layout from '../../layouts';
+import AuthLayout from '../../layouts/AuthLayout';
 import LogIn from '../../pages/LogIn';
 import SignUp from '../../pages/SignUp';
 import GuestGuard from '../guards/GuestGuard';
@@ -10,7 +10,7 @@ const AUTH_ROUTES = {
       path: '/',
       element: (
         <GuestGuard>
-          <Layout />
+          <AuthLayout />
         </GuestGuard>
       ),
       children: [
