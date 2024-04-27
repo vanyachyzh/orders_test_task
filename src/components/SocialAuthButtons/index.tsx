@@ -9,12 +9,14 @@ const SocialAuthButtons = () => {
       <Button
         onClick={() => handleAuth(AuthType.Google)}
         isLoading={loadingStatus === AuthType.Google}
+        className='min-w-[10rem]'
       >
         Google
       </Button>
       <Button
         onClick={() => handleAuth(AuthType.Microsoft)}
         isLoading={loadingStatus === AuthType.Microsoft}
+        className='min-w-[10rem]'
       >
         Microsoft
       </Button>

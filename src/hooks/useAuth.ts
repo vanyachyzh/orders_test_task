@@ -101,7 +101,7 @@ const useAuth = () => {
   };
 
   const handleLogout = async () => {
-    setLoadingStatus('Logout');
+    setLoadingStatus('logout');
 
     try {
       await auth.signOut();

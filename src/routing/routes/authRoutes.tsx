@@ -1,3 +1,5 @@
+import { Navigate } from 'react-router-dom';
+
 import AuthLayout from '../../layouts/AuthLayout';
 import LogIn from '../../pages/LogIn';
 import SignUp from '../../pages/SignUp';
@@ -14,6 +16,10 @@ const AUTH_ROUTES = {
         </GuestGuard>
       ),
       children: [
+        {
+          path: '/',
+          element: <Navigate to="/login" replace />,
+        },
         {
           path: 'signup',
           element: <SignUp />,

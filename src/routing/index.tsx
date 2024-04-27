@@ -7,7 +7,7 @@ const Routes = () => {
   return useRoutes([
     AUTH_ROUTES,
     MAIN_ROUTES,
-    { path: '*', element: <Navigate to="/" /> },
+    { path: '*', element: <Navigate to="/orders" /> },
   ]);
 };
 
