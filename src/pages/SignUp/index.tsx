@@ -1,24 +1,18 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import { AtIcon } from '../../components/icons';
-import { COOKIE_TOKEN_NAME } from '../../constants';
-import { auth } from '../../firebase';
-import { setCookie } from '../../utils/cookies';
-import { handleError } from '../../utils/handleError';
+import useAuth from '../../hooks/useAuth';
 import { validationScheme } from './scheme';
 
 import { ISignUpForm } from './types';
 
 const SignUp = () => {
-  const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  const { handleAuth, isLoading } = useAuth();
 
   const {
     handleSubmit,
@@ -29,34 +23,35 @@ const SignUp = () => {
   });
 
   const onSubmit = async (data: ISignUpForm) => {
-    setIsLoading(true);
+    handleAuth('signup', data.email, data.password);
+    // setIsLoading(true);
 
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password,
-      );
-      const user = userCredential.user;
+    // try {
+    //   const userCredential = await createUserWithEmailAndPassword(
+    //     auth,
+    //     data.email,
+    //     data.password,
+    //   );
+    //   const user = userCredential.user;
 
-      try {
-        if (user) {
-          const idToken = await user.getIdToken();
-          setCookie(COOKIE_TOKEN_NAME, idToken);
-          navigate('/orders');
-        }
-      } catch (error) {
-        handleError(error, 'User not available');
-      }
+    //   try {
+    //     if (user) {
+    //       const idToken = await user.getIdToken();
+    //       setCookie(COOKIE_TOKEN_NAME, idToken);
+    //       navigate('/orders');
+    //     }
+    //   } catch (error) {
+    //     handleError(error, 'User not available');
+    //   }
 
-      console.log(userCredential.user?.getIdToken());
+    //   console.log(userCredential.user?.getIdToken());
 
-      toast.success('User was created successfully!');
-    } catch (error) {
-      handleError(error);
-    }
+    //   toast.success('User was created successfully!');
+    // } catch (error) {
+    //   handleError(error);
+    // }
 
-    setIsLoading(false);
+    // setIsLoading(false);
   };
 
   return (

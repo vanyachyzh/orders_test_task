@@ -1,32 +1,23 @@
-import { signInWithPopup } from 'firebase/auth';
-
-import { auth, googleProvider, microsoftProvider } from '../../firebase';
-import { handleError } from '../../utils/handleError';
+import useAuth from '../../hooks/useAuth';
 import Button from '../Button';
 
 const SocialAuthButtons = () => {
-  const sigInWithGoogle = async () => {
-    try {
-      const res = await signInWithPopup(auth, googleProvider);
-      console.log(res);
-    } catch (error) {
-      handleError(error);
-    }
-  };
-
-  const sigInWithMicrosoft = async () => {
-    try {
-      await signInWithPopup(auth, microsoftProvider);
-    } catch (error) {
-      console.log;
-      handleError(error);
-    }
-  };
+  const { handleAuth, isLoading, authType } = useAuth();
 
   return (
     <div className="flex flex-col gap-[1rem]">
-      <Button onClick={sigInWithGoogle}>Google</Button>
-      <Button onClick={sigInWithMicrosoft}>Microsoft</Button>
+      <Button
+        onClick={() => handleAuth('google')}
+        isLoading={isLoading && authType === 'google'}
+      >
+        Google
+      </Button>
+      <Button
+        onClick={() => handleAuth('microsoft')}
+        isLoading={isLoading && authType === 'microsoft'}
+      >
+        Microsoft
+      </Button>
     </div>
   );
 };
