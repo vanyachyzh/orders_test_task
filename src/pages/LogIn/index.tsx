@@ -22,7 +22,7 @@ const LogIn = () => {
   });
 
   const onSubmit = async (data: ILogInForm) => {
-    handleAuth(AuthType.Signup, data.email, data.password);
+    handleAuth(AuthType.Login, data.email, data.password);
   };
 
   return (

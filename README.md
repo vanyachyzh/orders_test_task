@@ -22,7 +22,7 @@ https://github.com/vanyachyzh/orders_test_task.git
 npm install
 ```
 
-#### 2. Create a .env.local file and paste the following code
+#### 3. Create a .env.local file and paste the following code
 ```bash
 FIREBASE_API_KEY=AIzaSyCmKaDNtvUVJfkKEgHefWICmUmbjWs7W9w
 FIREBASE_AUTH_DOMAIN=orders-test-task.firebaseapp.com
@@ -33,10 +33,12 @@ FIREBASE_APP_ID=1:781816355082:web:0c7b02d8ca80468d3dc2f3
 FIREBASE_MEASUREMENT_ID=G-523JB878JN
 ```
 
-#### 2. Run the project
+#### 4. Run the project
 ```bash
 npm run dev
 ```
+
+#### 5. Open 5173 in browser
 
 ## Key Features
 
