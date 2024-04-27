@@ -83,6 +83,15 @@ const useAuth = () => {
         }
       }
     } catch (error) {
+      if (
+        error instanceof Error &&
+        'code' in error &&
+        (error.code === 'auth/popup-closed-by-user' ||
+          error.code === 'auth/cancelled-popup-request')
+      ) {
+        return;
+      }
+
       handleError(error, 'Something went wrong... Try again!');
     } finally {
       setLoadingStatus(null);
