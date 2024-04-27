@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
 
-export type GuestGuardProps = {
+export type GuardProps = {
   children: ReactNode;
 };

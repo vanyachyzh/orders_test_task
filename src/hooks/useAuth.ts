@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 import { COOKIE_TOKEN_NAME } from '../constants';
 import { auth, googleProvider, microsoftProvider } from '../firebase';
-import { setCookie } from '../utils/cookies';
+import { deleteCookie, setCookie } from '../utils/cookies';
 import { handleError } from '../utils/handleError';
 
 export enum AuthType {
@@ -21,7 +21,9 @@ export enum AuthType {
 
 const useAuth = () => {
   const navigate = useNavigate();
-  const [loadingStatus, setLoadingStatus] = useState<AuthType | null>(null);
+  const [loadingStatus, setLoadingStatus] = useState<
+    AuthType | 'logout' | null
+  >(null);
 
   const handleAuth = async (
     type: AuthType,
@@ -98,7 +100,23 @@ const useAuth = () => {
     }
   };
 
-  return { handleAuth, loadingStatus };
+  const handleLogout = async () => {
+    setLoadingStatus('Logout');
+
+    try {
+      await auth.signOut();
+
+      navigate('/login');
+      deleteCookie(COOKIE_TOKEN_NAME);
+
+      toast.success('You logged out!');
+    } catch (error) {
+      handleError(error, 'Error logging out');
+    }
+    setLoadingStatus(null);
+  };
+
+  return { handleAuth, loadingStatus, handleLogout };
 };
 
 export default useAuth;
