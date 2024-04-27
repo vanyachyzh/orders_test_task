@@ -1,7 +1,7 @@
-const Orders = () => (
+const Home = () => (
   <section className="flex flex-col items-center gap-[2rem] text-[2rem] font-semibold">
-    This is the "orders" page
+    This is the homepage
   </section>
 );
 
-export default Orders;
+export default Home;
