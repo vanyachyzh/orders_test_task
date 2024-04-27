@@ -74,7 +74,7 @@ const useAuth = () => {
 
           setCookie(COOKIE_TOKEN_NAME, idToken);
 
-          navigate('/orders');
+          navigate('/home');
           toast.success(
             type === AuthType.Signup
               ? 'You have successfully registered!'
