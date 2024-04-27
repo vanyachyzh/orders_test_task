@@ -12,57 +12,84 @@ import { auth, googleProvider, microsoftProvider } from '../firebase';
 import { setCookie } from '../utils/cookies';
 import { handleError } from '../utils/handleError';
 
+export enum AuthType {
+  Login,
+  Signup,
+  Google,
+  Microsoft,
+}
+
 const useAuth = () => {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
-  const [authType, setAuthType] = useState('');
+  const [loadingStatus, setLoadingStatus] = useState<AuthType | null>(null);
 
   const handleAuth = async (
-    type: string,
+    type: AuthType,
     email?: string,
     password?: string,
   ) => {
-    setAuthType(type);
-    setIsLoading(true);
-
     try {
-      let userCredential;
+      let authResponse;
 
-      if (type === 'signup' && email && password) {
-        userCredential = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password,
-        );
-      } else if (type === 'login' && email && password) {
-        userCredential = await signInWithEmailAndPassword(
-          auth,
-          email,
-          password,
-        );
-      } else if (type === 'microsoft') {
-        userCredential = await signInWithPopup(auth, microsoftProvider);
-      } else if (type === 'google') {
-        userCredential = await signInWithPopup(auth, googleProvider);
+      switch (type) {
+        case AuthType.Signup:
+          if (email && password) {
+            setLoadingStatus(AuthType.Signup);
+            authResponse = await createUserWithEmailAndPassword(
+              auth,
+              email,
+              password,
+            );
+          }
+          break;
+        case AuthType.Login:
+          if (email && password) {
+            setLoadingStatus(AuthType.Login);
+            authResponse = await signInWithEmailAndPassword(
+              auth,
+              email,
+              password,
+            );
+          }
+          break;
+        case AuthType.Microsoft:
+          setLoadingStatus(AuthType.Microsoft);
+          authResponse = await signInWithPopup(auth, microsoftProvider);
+          break;
+        case AuthType.Google:
+          setLoadingStatus(AuthType.Google);
+          authResponse = await signInWithPopup(auth, googleProvider);
+          break;
+        default:
+          throw new Error('Unsupported auth type');
       }
 
-      const user = userCredential?.user;
+      const user = authResponse?.user;
 
       if (user) {
-        const idToken = await user.getIdToken();
-        setCookie(COOKIE_TOKEN_NAME, idToken);
-        navigate('/orders');
-        toast.success('User');
+        try {
+          const idToken = await user.getIdToken();
+
+          setCookie(COOKIE_TOKEN_NAME, idToken);
+
+          navigate('/orders');
+          toast.success(
+            type === AuthType.Signup
+              ? 'You have successfully registered!'
+              : 'You have successfully logged in!',
+          );
+        } catch (error) {
+          handleError(error, 'Something went wrong... Try again!');
+        }
       }
     } catch (error) {
-      const actionName = type === 'signup' ? 'signing up' : 'logging in';
-      handleError(error, `Error ${actionName}`);
+      handleError(error, 'Something went wrong... Try again!');
     } finally {
-      setIsLoading(false);
+      setLoadingStatus(null);
     }
   };
 
-  return { handleAuth, isLoading, authType };
+  return { handleAuth, loadingStatus };
 };
 
 export default useAuth;

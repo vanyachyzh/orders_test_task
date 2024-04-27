@@ -5,14 +5,13 @@ import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import { AtIcon } from '../../components/icons';
-import useAuth from '../../hooks/useAuth';
+import useAuth, { AuthType } from '../../hooks/useAuth';
 import { validationScheme } from './scheme';
 
 import { ISignUpForm } from './types';
 
 const SignUp = () => {
-  // const [isLoading, setIsLoading] = useState(false);
-  const { handleAuth, isLoading } = useAuth();
+  const { handleAuth, loadingStatus } = useAuth();
 
   const {
     handleSubmit,
@@ -23,35 +22,7 @@ const SignUp = () => {
   });
 
   const onSubmit = async (data: ISignUpForm) => {
-    handleAuth('signup', data.email, data.password);
-    // setIsLoading(true);
-
-    // try {
-    //   const userCredential = await createUserWithEmailAndPassword(
-    //     auth,
-    //     data.email,
-    //     data.password,
-    //   );
-    //   const user = userCredential.user;
-
-    //   try {
-    //     if (user) {
-    //       const idToken = await user.getIdToken();
-    //       setCookie(COOKIE_TOKEN_NAME, idToken);
-    //       navigate('/orders');
-    //     }
-    //   } catch (error) {
-    //     handleError(error, 'User not available');
-    //   }
-
-    //   console.log(userCredential.user?.getIdToken());
-
-    //   toast.success('User was created successfully!');
-    // } catch (error) {
-    //   handleError(error);
-    // }
-
-    // setIsLoading(false);
+    handleAuth(AuthType.Signup, data.email, data.password);
   };
 
   return (
@@ -88,7 +59,10 @@ const SignUp = () => {
           error={errors.confirmPassword?.message}
         />
 
-        <Button className="min-w-[10rem]" isLoading={isLoading}>
+        <Button
+          className="min-w-[10rem]"
+          isLoading={loadingStatus === AuthType.Signup}
+        >
           Sign Up
         </Button>
 
