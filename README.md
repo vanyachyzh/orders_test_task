@@ -1,30 +1,52 @@
-# React + TypeScript + Vite
+# Test Task: Orders
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Technologies Used
+- **React**
+- **React Router Dom**
+- **Firebase**
+- **React Hook Form**
+- **Yup**
+- **React Toastify**
+- **TypeScript**
+- **Tailwind CSS**
 
-Currently, two official plugins are available:
+## Project Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+#### 1. Clone the Repository
+```bash
+https://github.com/vanyachyzh/orders_test_task.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+#### 2. Install Dependencies
+```bash
+npm install
+```
+
+#### 2. Create a .env.local file and paste the following code
+```bash
+FIREBASE_API_KEY=AIzaSyCmKaDNtvUVJfkKEgHefWICmUmbjWs7W9w
+FIREBASE_AUTH_DOMAIN=orders-test-task.firebaseapp.com
+FIREBASE_PROJECT_ID=orders-test-task
+FIREBASE_STORAGE_BUCKET=orders-test-task.appspot.com
+FIREBASE_MESSAGING_SENDER_ID=781816355082
+FIREBASE_APP_ID=1:781816355082:web:0c7b02d8ca80468d3dc2f3
+FIREBASE_MEASUREMENT_ID=G-523JB878JN
+```
+
+#### 2. Run the project
+```bash
+npm run dev
+```
+
+## Key Features
+
+- **Authentication**: Integration with Firebase for user authentication, supporting various methods:
+  - *Email and Password*: Users can register and log in using their email and password.
+  - *Google Sign-In*: Users can sign in using their Google account via OAuth.
+  - *Microsoft Sign-In*: Users can sign in using their Microsoft account via OAuth.
+- **Routing**: Usage of React Router Dom for managing application routes.
+- **Form Handling**: Implementation of forms using React Hook Form and Yup for validation.
+- **Toast Notifications**: Display of user-friendly notifications using React Toastify.
+- **TypeScript**: Utilization of TypeScript for static typing and improved code quality.
+- **Tailwind CSS**: Styling of components using Tailwind CSS for rapid development.
+
